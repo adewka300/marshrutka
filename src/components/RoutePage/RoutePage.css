@@ -1,0 +1,145 @@
+.hero {
+  position: relative;
+  min-height: 720px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 120px;
+  color: var(--text-light);
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 6, 6, 0.2), rgba(6, 6, 6, 0.72));
+}
+
+.hero__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__content {
+  position: relative;
+}
+
+.hero__content h1 {
+  max-width: 720px;
+  margin: 0 0 24px;
+  font-family: "Kankin", serif;
+  font-size: clamp(46px, 6vw, 92px);
+  line-height: 1.05;
+}
+
+.hero__content p {
+  max-width: 400px;
+  margin: 0 0 36px;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.day-block {
+  padding: 40px 0;
+}
+
+.day-block__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.day-block__text {
+  width: 100%;
+  color: var(--accent-muted);
+}
+
+.day-block__title {
+  margin: 0 0 24px;
+  font-family: "Kankin", serif;
+  font-size: 64px !important;
+  color: var(--rust) !important; 
+}
+
+.day-block__text p {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--rust) !important; 
+}
+
+.day-block__media {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.day-block__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.day-block__caption {
+  margin: 16px 0 0;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--rust) !important; 
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  width: 100%;
+}
+
+.day-block__media--tall img {
+  height: 520px;
+}
+
+.day-block__media--wide img {
+  height: 404px;
+}
+
+@media (max-width: 900px) {
+  .day-block__content {
+    flex-direction: column;
+  }
+
+  .day-block__media {
+    width: 100%;
+  }
+}
+
+/* Добавим стили для кнопок состояния избранного */
+.button--primary {
+  background-color: #7f2720;
+  color: white;
+  /* существующие стили */
+}
+
+.button--primary:hover {
+  background-color: #9a3129;
+  transform: translateY(-0.5px);
+  box-shadow: 0 6px 20px rgba(127, 39, 32, 0.3);
+}
+
+.button--secondary {
+  background-color: #f0ede6;
+  font-family: "Georgia", serif;
+  color: #7a745d;
+}
+
+.button--secondary:hover {
+  background-color: #e6e1d6;
+  color: #7f2720;
+}

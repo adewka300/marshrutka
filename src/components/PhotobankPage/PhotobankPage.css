@@ -1,0 +1,282 @@
+.photobank-hero {
+  padding: 70px 0 60px;
+}
+
+.photobank-hero h1 {
+  margin: 0 0 12px;
+  font-family: "Kankin", serif;
+  font-size: clamp(64px, 10vw, 140px);
+  letter-spacing: 0.05em;
+  color: #7f2720;
+}
+
+.photobank-hero p {
+  margin: 0;
+  font-size: 28px;
+  font-family: "Kankin", serif;
+  color: #7f2720;
+}
+
+.photobank-gallery {
+  padding-bottom: 80px;
+}
+
+.photobank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  grid-auto-rows: 300px;
+  grid-auto-flow: dense;
+}
+
+.photo-card {
+  margin: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.photo-card--tall {
+  grid-row: span 2;
+}
+
+.photo-card--wide {
+  grid-column: span 2;
+}
+
+/* Специальные позиции для создания интересного макета */
+.photo-card:nth-child(1) {
+  grid-row: span 2;
+}
+
+.photo-card:nth-child(2) {
+  grid-column: span 2;
+}
+
+.photo-card:nth-child(4) {
+  grid-row: span 2;
+}
+
+.photo-card:nth-child(7) {
+  grid-column: span 2;
+}
+
+.photo-card:nth-child(9) {
+  grid-row: span 2;
+}
+
+.photo-card:nth-child(11) {
+  grid-column: span 2;
+}
+
+.photo-card:nth-child(14) {
+  grid-row: span 2;
+}
+
+/* Эффект наложения при наведении */
+.photo-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+  border-radius: 28px;
+  pointer-events: none;
+}
+
+.photo-card:hover::after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 1200px) {
+  .photobank-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 280px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 900px) {
+  .photobank-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+    gap: 20px;
+  }
+  
+  .photo-card--wide {
+    grid-column: span 1;
+  }
+  
+  /* Сбрасываем специальные позиции на мобильных */
+  .photo-card:nth-child(2),
+  .photo-card:nth-child(7),
+  .photo-card:nth-child(11) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .photobank-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 300px;
+    gap: 20px;
+  }
+  
+  .photobank-hero h1 {
+    font-size: clamp(48px, 8vw, 80px);
+  }
+  
+  .photobank-hero p {
+    font-size: 22px;
+  }
+  
+  /* Все карточки одинаковые на мобильных */
+  .photo-card--tall,
+  .photo-card--wide {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+  
+  /* Сбрасываем все специальные позиции */
+  .photo-card:nth-child(n) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+
+/* Стили для модального окна */
+.photo-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.photo-modal__content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ЧИСТЫЙ крестик справа сбоку сверху от фото */
+.photo-modal__close {
+  position: absolute;
+  right: -50px;    /* Справа от фотографии */
+  background: none;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2001;
+  transition: transform 0.3s ease;
+}
+
+.photo-modal__close:hover {
+  transform: scale(1.1);
+}
+
+.photo-modal__close svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.photo-modal__image {
+  max-width: 100%;
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+}
+
+/* Для мобильных */
+@media (max-width: 768px) {
+  .photo-modal__content {
+    max-width: 95%;
+    max-height: 80%;
+  }
+  
+  .photo-modal__close {
+    top: -40px;
+    width: 36px;
+    height: 36px;
+  }
+  
+  .photo-modal__close svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Дополнительные стили для самой галереи (если нужно) */
+.photo-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}

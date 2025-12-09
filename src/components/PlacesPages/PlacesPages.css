@@ -1,0 +1,360 @@
+/* Общие стили для страниц мест */
+.page--places {
+  background-color: #EAE9E3;
+  min-height: 100vh;
+}
+
+/* Контейнер */
+.places-container {
+  padding: 0 126px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Герой секция */
+.places-hero {
+  padding: 80px 0 0;
+}
+
+.places-hero-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Стрелка с подзаголовком */
+.places-hero-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 338px;
+  position: relative;
+  transition: gap 0.3s ease;
+}
+
+.places-hero-subtitle:hover {
+  gap: 12px;
+}
+
+.places-hero-subtitle-text {
+  transition: transform 0.3s ease;
+}
+
+.places-hero-subtitle:hover .places-hero-subtitle-text {
+  transform: translateX(3px);
+}
+
+.places-hero-arrow svg {
+  transition: transform 0.3s ease;
+}
+
+.places-hero-subtitle:hover .places-hero-arrow svg {
+  transform: translateX(-5px);
+}
+
+.places-hero-arrow {
+  width: 70px;
+  height: 33px;
+  display: flex;
+  align-items: center;
+  transform: rotate(180deg); 
+}
+
+.places-hero-arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.places-hero-subtitle-text {
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  font-size: 29px;
+  color: var(--banner-color);
+  position: absolute;
+  left: 80px;
+  white-space: nowrap;
+}
+
+.places-hero-title {
+  font-family: 'Kankin', serif;
+  font-weight: 400;
+  font-size: 110px;
+  color: var(--banner-color);
+  line-height: 1;
+  margin: 0;
+}
+
+/* Контент мест */
+.places-content {
+  padding: 60px 0 100px;
+}
+
+/* Карточка места */
+.place-card {
+  margin-bottom: 100px;
+}
+
+.place-card:last-child {
+  margin-bottom: 60px;
+}
+
+.place-card__title-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 50px;
+}
+
+.place-card__icon {
+  width: 69px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  line-height: 1;
+}
+
+.place-card__icon-emoji {
+  display: block;
+  line-height: 1;
+}
+
+.place-card__title {
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  font-size: 56px;
+  color: var(--banner-color);
+  margin: 0;
+  line-height: 1;
+}
+
+.place-card__content {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.place-card__image-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.place-card__image {
+  width: 100%;
+  height: 512px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.place-card__description {
+  flex: 0 0 365px;
+  max-width: 365px;
+}
+
+/* ИЗМЕНЕНО: Выравнивание по левой стороне */
+.place-card__description-content {
+  font-family: 'Georgia', serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+  text-align: left; /* Изменено с justify на left */
+}
+
+.place-card__description-line {
+  margin: 0 0 1em 0;
+}
+
+.place-card__description-line:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Текст внизу страницы */
+.places-page-footer-text {
+  font-family: 'Kankin', serif;
+  font-size: 32px;
+  line-height: 1.3;
+  text-align: center;
+  margin: -50px 0 -50px 0;
+  color: var(--banner-color);
+  width: 100%;
+  padding-top: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+  .places-container {
+    padding: 0 80px;
+  }
+  
+  .places-hero-title {
+    font-size: 90px;
+  }
+  
+  .places-hero-subtitle {
+    width: 300px;
+  }
+  
+  .places-hero-arrow {
+    width: 60px;
+  }
+  
+  .place-card__title {
+    font-size: 48px;
+  }
+  
+  .place-card__description-content {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .places-container {
+    padding: 0 60px;
+  }
+  
+  .places-hero-title {
+    font-size: 70px;
+  }
+  
+  .places-hero-subtitle {
+    width: 250px;
+  }
+  
+  .places-hero-arrow {
+    width: 50px;
+  }
+  
+  .places-hero-subtitle-text {
+    font-size: 24px;
+    left: 70px;
+  }
+  
+  .place-card__content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .place-card__description {
+    flex: 1;
+    max-width: 100%;
+  }
+  
+  .place-card__image {
+    height: 400px;
+  }
+  
+  .place-card__title {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .places-container {
+    padding: 0 30px;
+  }
+  
+  .places-hero {
+    padding: 70px 0 40px;
+  }
+  
+  .places-hero-title {
+    font-size: 50px;
+  }
+  
+  .places-hero-subtitle {
+    width: 200px;
+  }
+  
+  .places-hero-arrow {
+    width: 40px;
+    height: 28px;
+  }
+  
+  .places-hero-subtitle-text {
+    font-size: 20px;
+    left: 60px;
+  }
+  
+  .place-card__title-section {
+    margin-bottom: 30px;
+  }
+  
+  .place-card__icon {
+    width: 50px;
+    height: 46px;
+    font-size: 36px;
+  }
+  
+  .place-card__title {
+    font-size: 32px;
+  }
+  
+  .place-card__image {
+    height: 300px;
+  }
+  
+  .place-card__description-content {
+    font-size: 16px;
+  }
+  
+  .places-page-footer-text {
+    font-size: 24px;
+    margin: 30px 0 0 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .places-container {
+    padding: 0 20px;
+  }
+  
+  .places-hero-title {
+    font-size: 40px;
+  }
+  
+  .places-hero-subtitle {
+    width: 180px;
+  }
+  
+  .places-hero-arrow {
+    width: 35px;
+  }
+  
+  .places-hero-subtitle-text {
+    font-size: 18px;
+    left: 50px;
+  }
+  
+  .place-card__title {
+    font-size: 28px;
+  }
+  
+  .place-card__icon {
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
+  }
+  
+  .place-card__image {
+    height: 250px;
+  }
+  
+  .place-card {
+    margin-bottom: 60px;
+  }
+}
+
+/* Утилиты */
+.font-kankin {
+  font-family: 'Kankin', serif;
+}
+
+.font-georgia {
+  font-family: 'Georgia', serif;
+}

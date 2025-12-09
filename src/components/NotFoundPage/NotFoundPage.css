@@ -1,0 +1,265 @@
+/* Страница 404 */
+.page--not-found {
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.not-found-main {
+  padding: 100px 0 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Декоративный компас */
+.not-found-decoration {
+  position: relative;
+  margin-bottom: 60px;
+}
+
+.compass {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.compass__circle {
+  width: 100%;
+  height: 100%;
+  border: 4px solid var(--rust);
+  border-radius: 50%;
+  position: relative;
+}
+
+.compass__circle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: var(--rust);
+  border-radius: 50%;
+}
+
+.compass__needle {
+  position: absolute;
+  background: var(--rust);
+  transform-origin: bottom center;
+}
+
+.compass__needle--n {
+  width: 4px;
+  height: 80px;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.compass__needle--s {
+  width: 4px;
+  height: 80px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.map-line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 4px;
+  background: var(--accent-muted);
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Текст */
+.not-found-text {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.not-found-title {
+  font-family: "Kankin", serif;
+  color: var(--rust);
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.not-found-number {
+  font-size: clamp(120px, 20vw, 200px);
+  line-height: 0.9;
+  display: block;
+  text-shadow: 4px 4px 0 var(--accent);
+}
+
+.not-found-message {
+  font-size: clamp(36px, 5vw, 56px);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.not-found-description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  margin: 0 0 50px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Georgia", serif;
+}
+
+/* Кнопки и действия */
+.not-found-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.not-found-button {
+  padding: 18px 48px;
+  font-size: 20px;
+  font-family: "Georgia", serif;
+  border-radius: 24px;
+  background: var(--rust);
+  color: var(--text-light);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.not-found-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(127, 39, 32, 0.3);
+  background: #6a1f1a;
+}
+
+.not-found-hint {
+  font-size: 16px;
+  color: var(--accent-muted);
+  font-style: italic;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+/* Декоративные иконки */
+.not-found-icons {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.1;
+}
+
+.icon-bus,
+.icon-map,
+.icon-sign {
+  position: absolute;
+  font-size: 80px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.icon-bus {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.icon-map {
+  top: 40%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.icon-sign {
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .not-found-main {
+    padding: 60px 0 100px;
+  }
+  
+  .compass {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .not-found-number {
+    font-size: 100px;
+  }
+  
+  .not-found-message {
+    font-size: 32px;
+  }
+  
+  .not-found-description {
+    font-size: 18px;
+    padding: 0 20px;
+  }
+  
+  .not-found-button {
+    padding: 16px 36px;
+    font-size: 18px;
+  }
+  
+  .icon-bus,
+  .icon-map,
+  .icon-sign {
+    font-size: 60px;
+    opacity: 0.08;
+  }
+}
+
+@media (max-width: 480px) {
+  .not-found-title {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .not-found-number {
+    font-size: 80px;
+  }
+  
+  .not-found-message {
+    font-size: 28px;
+  }
+  
+  .not-found-description {
+    font-size: 16px;
+  }
+}
