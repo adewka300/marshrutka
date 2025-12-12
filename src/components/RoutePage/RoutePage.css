@@ -143,3 +143,23 @@
   background-color: #e6e1d6;
   color: #7f2720;
 }
+
+.route-map-section {
+  background-color: var(--background-light);
+}
+
+/* Если хотите добавить разделитель перед картой */
+.route-map-section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 0 auto -50px;
+  max-width: 1200px;
+}
+
+.route-maps-section {
+  background-color: var(--background-light);
+  border-top: 1px solid var(--border-light);
+  margin-top: -40px;
+}

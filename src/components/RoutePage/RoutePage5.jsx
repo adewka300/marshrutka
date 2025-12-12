@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './RoutePage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import RouteMap from '../RouteMap/RouteMap'; // Импортируем новый компонент
 import { useFavorites } from '../../hooks/useFavorites';
 import { routesData } from '../../data/routes';
 
@@ -27,18 +28,15 @@ function RoutePage() {
 
   const currentRoute = routesData.find(route => route.id === routeId) || routesData[0];
 
-    // Функция для форматирования описания с абзацами
+  // Функция для форматирования описания с абзацами
   const formatDescription = (text) => {
     if (!text) return '';
     
-    // Разделяем по двойным переносам строк
     const paragraphs = text.split('\n\n').filter(p => p.trim());
     
     return paragraphs.map((paragraph, index) => {
-      // Удаляем лишние пробелы и переносы
       const cleanParagraph = paragraph.trim().replace(/\s+/g, ' ');
       
-      // Определяем стиль для каждого абзаца
       const style = index < paragraphs.length - 1 
         ? { marginBottom: '1.5em' } 
         : { marginBottom: '0' };
@@ -46,6 +44,7 @@ function RoutePage() {
       return <p key={index} style={style} dangerouslySetInnerHTML={{ __html: cleanParagraph }} />;
     });
   };
+
   return (
     <div className="page">
       <Header currentPage="routes" />
@@ -82,6 +81,17 @@ function RoutePage() {
             </div>
           </section>
         ))}
+
+        {/* Добавляем карты с переключателем дней */}
+        {currentRoute.days.some(day => day.routePoints && day.routePoints.length > 0) && (
+          <section className="route-maps-section">
+            <div className="container">
+              <RouteMap 
+                routeDays={currentRoute.days}
+              />
+            </div>
+          </section>
+        )}
       </main>
 
       <Footer />

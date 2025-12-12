@@ -1,0 +1,301 @@
+.route-map {
+  padding: -80px 0;
+  background-color: var(--background-light);
+  border-top: 1px solid var(--border-light);
+}
+
+.route-map__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.route-map__title {
+  margin: 0;
+  font-family: "Kankin", serif;
+  font-size: 48px !important;
+  color: var(--rust) !important;
+  line-height: 1.1;
+}
+
+.route-map__external-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #f0ede6; /* Текущий цвет */
+  color: #7a745d;
+  /* Добавьте чтобы изменить только эту кнопку: */
+  background-color: #ffffff; /* Белый фон */
+  border: 1px solid #7f2720; /* Обводка цвета rust */
+  color: #7f2720; /* Цвет текста как обводка */
+}
+
+.route-map__external-icon {
+  transition: transform 0.3s ease;
+}
+
+.route-map__external-button:hover .route-map__external-icon {
+  transform: translate(2px, -2px);
+}
+
+.route-map__container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  min-height: 500px;
+}
+
+.route-map__yandex-container {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(127, 39, 32, 0.08);
+  background-color: #f0ede6;
+}
+
+.route-map__points-list {
+  padding: 24px;
+  background-color: var(--background-light);
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+}
+
+.route-map__points-title {
+  margin: 0 0 0;
+  font-family: "Kankin", serif;
+  font-size: 28px;
+  color: var(--rust);
+}
+
+.route-map__points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.route-map__point {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+}
+
+.route-map__point:hover {
+  border-color: var(--rust);
+  box-shadow: 0 4px 16px rgba(127, 39, 32, 0.1);
+  transform: translateY(-2px);
+}
+
+.route-map__point-marker {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background-color: var(--rust);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-map__point-number {
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.route-map__point-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.route-map__point-name {
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.route-map__point-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.route-map__loading {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  height: 300px;
+}
+
+.route-map__loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(127, 39, 32, 0.1);
+  border-top-color: var(--rust);
+  border-radius: 50%;
+  animation: route-map-spin 1s linear infinite;
+}
+
+@keyframes route-map-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .route-map__container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .route-map__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .route-map__title {
+    font-size: 40px !important;
+  }
+  
+  .route-map__external-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .route-map {
+    padding: 60px 0;
+  }
+  
+  .route-map__title {
+    font-size: 32px !important;
+  }
+  
+  .route-map__yandex-container {
+    height: 400px;
+  }
+}
+
+/* Добавьте эти стили в существующий файл */
+.route-map__yandex-container {
+  min-height: 500px;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.route-map__loading,
+.route-map__error,
+.route-map__no-points {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  min-height: 300px;
+}
+
+.route-map__loading p {
+  color: var(--rust);
+  font-size: 18px;
+  margin-top: 16px;
+}
+
+.route-map__error {
+  color: #dc3545;
+}
+
+.route-map__error p {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.route-map__retry-button {
+  margin-top: 10px;
+}
+
+.route-map__no-points p {
+  color: var(--text-muted);
+  font-size: 16px;
+  font-style: italic;
+}
+
+/* Гарантируем что контейнер карты всегда будет видим */
+.route-map__container {
+  position: relative;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+  .route-map__yandex-container {
+    min-height: 400px;
+  }
+  
+  .route-map__loading,
+  .route-map__error,
+  .route-map__no-points {
+    min-height: 250px;
+    padding: 40px 20px;
+  }
+}
+
+/* Анимация спиннера */
+@keyframes route-map-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.route-map__points-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.route-map__points-count {
+  font-size: 14px;
+  color: var(--text-muted);
+  background-color: white;
+  padding: 4px 12px;
+  margin-top: -25px;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+}
+
+.route-map__yandex-container {
+  position: relative;
+  z-index: 1;
+}
+
+.route-map__loading-overlay,
+.route-map__error-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+}
