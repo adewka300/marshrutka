@@ -55,7 +55,11 @@ function RoutePage() {
             <img src={currentRoute.image} alt={`Маршрут ${currentRoute.title}`} />
           </div>
           <div className="container hero__content">
-            <h1>{currentRoute.title}</h1>
+          <h1>
+              Москва
+              <br />
+              за 7 дней
+            </h1>
             <p>{currentRoute.description}</p>
             <button 
               className={`button ${isRouteFavorite ? 'button--secondary' : 'button--primary'}`} 

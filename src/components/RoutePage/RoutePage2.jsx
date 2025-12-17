@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './RoutePage.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import RouteMap from '../RouteMap/RouteMap'; // Импортируем новый компонент
+import RouteMap from '../RouteMap/RouteMap';
 import { useFavorites } from '../../hooks/useFavorites';
 import { routesData } from '../../data/routes';
 
@@ -27,6 +27,16 @@ function RoutePage() {
   };
 
   const currentRoute = routesData.find(route => route.id === routeId) || routesData[0];
+
+  // Функция для разделения заголовка на "Москва" и остальное
+  const splitRouteTitle = (title) => {
+    const firstLine = "Москва";
+    // Убираем "Москва" из заголовка и берем остальное
+    const secondLine = title.replace("Москва", "").replace("\n", "").trim();
+    return { firstLine, secondLine };
+  };
+
+  const { firstLine, secondLine } = splitRouteTitle(currentRoute.title);
 
   // Функция для форматирования описания с абзацами
   const formatDescription = (text) => {
@@ -55,7 +65,12 @@ function RoutePage() {
             <img src={currentRoute.image} alt={`Маршрут ${currentRoute.title}`} />
           </div>
           <div className="container hero__content">
-            <h1>{currentRoute.title}</h1>
+            {/* Разделяем заголовок на две строки */}
+            <h1>
+              {firstLine}
+              <br />
+              {secondLine}
+            </h1>
             <p>{currentRoute.description}</p>
             <button 
               className={`button ${isRouteFavorite ? 'button--secondary' : 'button--primary'}`} 
