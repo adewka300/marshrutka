@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, Suspense, lazy } from 'react'; // Добавляем Suspense и lazy
+import { useEffect, Suspense, lazy } from 'react'; 
 
 import './styles/global.css';
-import HomePage from './components/HomePage/HomePage';
-import FavoritesPage from './components/FavoritesPage/FavoritesPage';
-// Страница 404 оставляем обычным импортом 
+// Только 404 оставляем обычным импортом 
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
-// --- Lazy импорты для остальных страниц ---
+// --- Lazy импорты для ВСЕХ страниц ---
+const HomePage = lazy(() => import('./components/HomePage/HomePage'));
+const FavoritesPage = lazy(() => import('./components/FavoritesPage/FavoritesPage'));
 const RoutePage = lazy(() => import('./components/RoutePage/RoutePage'));
 const RoutePage2 = lazy(() => import('./components/RoutePage/RoutePage2'));
 const RoutePage3 = lazy(() => import('./components/RoutePage/RoutePage3'));
@@ -18,6 +18,8 @@ const PhotobankPage = lazy(() => import('./components/PhotobankPage/PhotobankPag
 const ParksPage = lazy(() => import('./components/PlacesPages/ParksPage'));
 const RestaurantsPage = lazy(() => import('./components/PlacesPages/RestaurantsPage'));
 const MuseumsPage = lazy(() => import('./components/PlacesPages/MuseumsPage'));
+
+
 
 // --- Инстант-скролл наверх ---
 function ScrollToTopInstant() {
@@ -37,6 +39,23 @@ function ScrollToTopInstant() {
 
   return null;
 }
+
+// --- Хук для предзагрузки главных страниц ---
+const usePreloadMainPages = () => {
+  useEffect(() => {
+    // Предзагружаем главную и избранное сразу после загрузки основного бандла
+    const preloadPages = () => {
+      // Небольшая задержка, чтобы не блокировать рендеринг
+      setTimeout(() => {
+        // Эти импорты будут запущены, но не отрендерены
+        import('./components/HomePage/HomePage');
+        import('./components/FavoritesPage/FavoritesPage');
+      }, 1000);
+    };
+    
+    preloadPages();
+  }, []);
+};
 
 // --- Fallback компонент для загрузки ---
 const PageLoader = () => (
@@ -80,6 +99,8 @@ const PageLoader = () => (
 );
 
 function App() {
+  usePreloadMainPages(); // Используем хук для предзагрузки
+  
   return (
     <Router>
       <ScrollToTopInstant />  
@@ -88,11 +109,9 @@ function App() {
         {/* Обёртываем Routes в Suspense */}
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            {/* Главную и избранное тоже можно lazy, но если они часто используются, оставляем обычный импорт */}
+            {/* Все страницы теперь lazy */}
             <Route path="/" element={<HomePage />} />
             <Route path="/favorites" element={<FavoritesPage />} />
-            
-            {/* Lazy-страницы */}
             <Route path="/route/1" element={<RoutePage />} />
             <Route path="/route/2" element={<RoutePage2 />} />
             <Route path="/route/3" element={<RoutePage3 />} />
